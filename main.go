@@ -9,7 +9,7 @@ import (
 
 var version = "0.1.0"
 var helpMsg = `NAME:
-    ext - An interface for command extensions
+    ext - A convention for command extensions
 USAGE:
     ext commands...
 `
