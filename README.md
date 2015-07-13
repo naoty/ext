@@ -10,17 +10,21 @@ $ go get github.com/naoty/ext
 
 ## Usage
 
+`ext` provides a interface for command extensions. If you want to extend a command by a new subcommand, you should add a command named `<command>-<subcommand>` such as `git-pr`. `ext` will look up and run the extension before an original command.
+
 ```
 $ alias git="ext git"
-$ git pr # Run `git-pr` before `git pr`
+$ git pr
 ```
+
+If `git-pr` is found, `ext` will run `git-pr` instead `git pr`.
 
 ```
 $ alias gem="ext gem"
-$ gem uninstall all # Run `gem-uninstall-all` before `gem uninstall all`
+$ gem uninstall all
 ```
 
-If you want to extend a command by a new subcommand, you should add a command named `<command>-<subcommand>` such as `git-pr`.
+`ext` looks up and runs a binary in following order: `gem-uninstall-all`, `gem-uninstall all`, `gem uninstall all`.
 
 ## Author
 
