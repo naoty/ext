@@ -15,6 +15,8 @@ USAGE:
 `
 
 func main() {
+	defer rescue()
+
 	if len(os.Args) < 2 {
 		fmt.Println(helpMsg)
 		os.Exit(1)
@@ -55,4 +57,12 @@ func LookupExtCmd(args []string) ([]string, error) {
 		}
 	}
 	return nil, err
+}
+
+func rescue() {
+	if err := recover(); err != nil {
+		args := strings.Join(os.Args, " ")
+		fmt.Printf("Command Failed: %s\n%s\n", args, err)
+		os.Exit(1)
+	}
 }
