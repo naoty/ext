@@ -7,7 +7,28 @@ import (
 	"strings"
 )
 
+var version = "0.1.0"
+var helpMsg = `NAME:
+    ext - An interface for command extensions
+USAGE:
+    ext commands...
+`
+
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Println(helpMsg)
+		os.Exit(1)
+	}
+
+	switch os.Args[1] {
+	case "-h", "--help":
+		fmt.Println(helpMsg)
+		os.Exit(0)
+	case "-v", "--version":
+		fmt.Println(version)
+		os.Exit(0)
+	}
+
 	extArgs, err := LookupExtCmd(os.Args[1:])
 
 	if err != nil {
